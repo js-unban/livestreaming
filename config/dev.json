@@ -1,0 +1,5 @@
+{
+    "DB_NAME": "livestreaming.db",
+    "TOKEN_DURATION_HOURS": 1,
+    "ISSUER": "livestreaming"
+}
