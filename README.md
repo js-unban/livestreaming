@@ -15,3 +15,7 @@ Example:
 ```
 docker run -e SIGNING_KEY=foo -ti -p 8080:8080 --rm livestreaming ./livestreaming
 ```
+
+## Updating models
+
+Models can be updated under the /models folder and then the `wire` command[https://github.com/google/wire] needs to be ran on that folder, this will generate a wire_gen.so file that must be added when you commit.
