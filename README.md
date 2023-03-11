@@ -7,6 +7,9 @@ Project for sending a HLS stream
 The project can be run using docker and passing an environment variable
 for the signing key for tokens (SIGNING_KEY).
 
+Also content should live under /content folder and include a folder named segments with all segments
+in the following format segment?.ts where "?" is a number
+
 Example:
 
 ```
