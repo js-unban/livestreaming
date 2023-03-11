@@ -74,12 +74,12 @@ func streamVOD(c *gin.Context) {
 
 func register(c *gin.Context) {
 	template := "register.tmpl"
-	registrationRequest, err := getUserPasswordFromForm(c)
+	registrationRequest, err := getRegistrationParams(c)
 	if err != nil {
-		c.HTML(http.StatusBadRequest, template, gin.H{"message": "bad params for registration, should receive username and password"})
+		c.HTML(http.StatusBadRequest, template, gin.H{"message": "bad params for registration, should receive name, username and password"})
 		return
 	}
-	user, err := models.Users.CreateUser(&models.User{Email: registrationRequest.Email, Password: registrationRequest.Password})
+	user, err := models.Users.CreateUser(&models.User{Name: registrationRequest.Name, Email: registrationRequest.Email, Password: registrationRequest.Password})
 	if err != nil {
 		var msg string
 		if !errors.Is(err, models.UserAlreadyExists) {
@@ -97,7 +97,7 @@ func register(c *gin.Context) {
 
 func login(c *gin.Context) {
 	template := "login.tmpl"
-	loginRequest, err := getUserPasswordFromForm(c)
+	loginRequest, err := getLoginParams(c)
 	if err != nil {
 		c.HTML(http.StatusBadRequest, template, gin.H{"message": "bad params for login, should receive username and password"})
 		return

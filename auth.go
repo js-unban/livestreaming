@@ -27,12 +27,28 @@ type LoginRequest struct {
 	Password string `form:"password" binding:"required"`
 }
 
-func getUserPasswordFromForm(c *gin.Context) (LoginRequest, error) {
+type RegistrationRequest struct {
+	Name     string `form:"name" binding:"required"`
+	Email    string `form:"email" binding:"required"`
+	Password string `form:"password" binding:"required"`
+}
+
+func getLoginParams(c *gin.Context) (LoginRequest, error) {
 	var loginRequest LoginRequest
 	if err := c.ShouldBind(&loginRequest); err != nil {
 		return loginRequest, err
 	} else {
 		return loginRequest, nil
+	}
+
+}
+
+func getRegistrationParams(c *gin.Context) (RegistrationRequest, error) {
+	var registrationRequest RegistrationRequest
+	if err := c.ShouldBind(&registrationRequest); err != nil {
+		return registrationRequest, err
+	} else {
+		return registrationRequest, nil
 	}
 
 }
